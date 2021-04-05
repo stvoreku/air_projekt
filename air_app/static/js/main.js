@@ -1,5 +1,5 @@
 function showLocation(data){
-    outputElement.innerHTML = "My new text!";
+    outputElement.innerHTML = data;
 
 }
 
