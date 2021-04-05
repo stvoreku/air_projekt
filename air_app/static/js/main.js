@@ -8,7 +8,7 @@ function showLocation(data){
 function localization() {
     if (window.navigator.geolocation) {
         window.navigator.geolocation
-            .getCurrentPosition(console.log, console.log);
+            .getCurrentPosition(showLocation, showLocation);
     } else {
         console.log("LOCATION FAIL")
     }
