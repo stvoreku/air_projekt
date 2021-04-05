@@ -1,3 +1,8 @@
+function showLocation(data){
+    outputElement.innerHTML = "My new text!";
+
+}
+
 
 
 function localization() {
