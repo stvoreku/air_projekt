@@ -1,5 +1,5 @@
 function showLocation(data){
-    document.getElementById("output").innerHTML = data.coords.latitude;
+    document.getElementById("output").innerHTML = data.coords.latitude + ', ' + data.coords.longitude;
 
 }
 
