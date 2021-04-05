@@ -1,5 +1,5 @@
 function showLocation(data){
-    outputElement.innerHTML = data;
+    document.getElementById("output").innerHTML = data;
 
 }
 
