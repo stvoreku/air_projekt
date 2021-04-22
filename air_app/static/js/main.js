@@ -1,9 +1,8 @@
 function showLocation(data){
+    console.log(data)
     document.getElementById("output").innerHTML = data.coords.latitude + ', ' + data.coords.longitude;
 
 }
-
-
 
 function localization() {
     if (window.navigator.geolocation) {
