@@ -7,7 +7,7 @@ class HomeView(TemplateView):
     template_name = 'home.html'
 
     def post(self, request, *args, **kwargs):
-         return JsonResponse({'id': 4, 'name': "URzad bielane"}, status=200)
+         return JsonResponse({'id': request.DATA}, status=200)
 
 class VueView(TemplateView):
     template_name = 'vue_test.html'
