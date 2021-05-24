@@ -7,3 +7,8 @@ class Place(models.Model):
     #TODO optimalization - consider long int vs float
     x = models.FloatField()
     y = models.FloatField()
+
+class Queue(models.Model):
+    place = models.ManyToOneRel(Place)
+    name = models.CharField(max_length=200)
+
