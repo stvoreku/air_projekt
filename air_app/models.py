@@ -9,6 +9,6 @@ class Place(models.Model):
     y = models.FloatField()
 
 class Queue(models.Model):
-    place = models.ManyToOneRel(Place)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
 
