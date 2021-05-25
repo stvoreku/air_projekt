@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, View
 from django.http import HttpResponse, JsonResponse
-from .models import Place
+from .models import Place, Queue
 from math import sin, cos, sqrt, atan2, radians, inf
 import json, requests
 
@@ -64,33 +64,29 @@ class HomeView(TemplateView):
 
         return distance, office_name
 
-
-    def get_api(self, api):
-        places = Place.objects.all()
+    def get_api(self, place):
 
         apis = []
         queues = []
 
-        if api == "all":  # return information about all places
-            for place in places:
-                apis.append(place.api)
+        if place == "all":  # return information about all places
+            places = Place.objects.all()
         else:  # return information only about selected
-            apis.append(api)
+            places = place
 
         params = ['nazwaGrupy', 'czasObslugi', 'liczbaKlwKolejce', 'aktualnyNumer']
 
+        # everywhere the same date and time for queue
         response = requests.get(apis[0])
         response_json = response.json()
-
-        # wszedzie takie same dane -> biore z pierwszego lepszego
         date = response_json['result']['date']
         time = response_json['result']['time']
 
-        for api in apis:
-            response = requests.get(api)
+        for place in places:
+            response = requests.get(place.api)
             response_json = response.json()
             for i in range(len(response_json['result']['grupy']) - 1):
-                tmp_queue = []
+                tmp_queue = [place, date, time]
                 for param in params:
                     queue = response_json['result']['grupy'][i][param]
                     tmp_queue.append(queue)
@@ -98,13 +94,19 @@ class HomeView(TemplateView):
 
         return queues
 
+    def update_database(self, request, queues):
 
-    # def update_database(self, request):
-
-
-
-
-
+        for queue in queues:
+            queue = Queue(
+                place=queues[0],
+                date=queues[1],
+                time=queues[2],
+                name=queues[3],
+                service_time=queues[4],
+                queue_lenght=queues[5],
+                current_queue_number=queues[6]
+            )
+            queue.save()
 
 
 class VueView(TemplateView):
