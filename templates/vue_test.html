@@ -61,7 +61,7 @@
       this.errorStr = err.message;
     })
     // Make axios CALL
-      const req = JSON.stringify({x:0, y:0})
+      const req = JSON.stringify({x:location.coords.latitude, y:location.coords.longitude})
 
 
       axios
