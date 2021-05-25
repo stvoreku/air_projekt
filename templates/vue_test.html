@@ -1,28 +1,29 @@
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-
+<link rel="stylesheet" href={% static 'css/base.css' %}/>
 <!DOCTYPE html>
 <html lang="en">
     <title>Testing Vue</title>
   <body>
 
 <div id="app" v-cloak>
+    <div class="widget"> TU BEDZIE JAKIES LOGO CZY NAZWA</div>
 
-  <div v-if="errorStr">
+  <div class="widget" v-if="errorStr">
     Sorry, but the following error
     occurred: {{errorStr}}
   </div>
 
-  <div v-if="gettingLocation">
+  <div class="widget" v-if="gettingLocation">
     <i>Getting your location...</i>
   </div>
 
-  <div v-if="location">
+  <div class="widget" v-if="location">
     Your location data is [[ location.coords.latitude ]], [[ location.coords.longitude]]
   </div>
 
-    <div v-if="place">
+    <div class="widget" v-if="place">
         Closest place is  [[place]]
 
 
