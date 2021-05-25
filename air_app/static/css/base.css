@@ -11,6 +11,16 @@ body {
 
 }
 #app {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 
     background-size: cover;
     padding: 4rem 2rem;
