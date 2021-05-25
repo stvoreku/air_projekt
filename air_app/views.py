@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, View
 from django.http import HttpResponse, JsonResponse
 from .models import Place
 from math import sin, cos, sqrt, atan2, radians, inf
-import json
+import json, requests
 
 
 class HomeView(TemplateView):
@@ -63,6 +63,48 @@ class HomeView(TemplateView):
         distance = r * c
 
         return distance, office_name
+
+
+    def get_api(self):
+        places = Place.objects.all()
+
+        apis = []
+
+        for place in places:
+            apis.append(place.api)
+
+        params = ['nazwaGrupy', 'czasObslugi', 'liczbaKlwKolejce', 'aktualnyNumer']
+
+        response = requests.get(apis[0])
+        response_json = response.json()
+
+        # wszedzie takie same dane -> biore z pierwszego lepszego
+        date = response_json['result']['date']
+        time = response_json['result']['time']
+
+        # for url in urls:
+        #    response = requests.get(url)
+        #    response_json = response.json()
+        #    for param in params:
+        #        for i in range(len(response_json['result']['grupy'])):
+        #            print(response_json['result']['grupy'][i][param])
+
+        for api in apis:
+            response = requests.get(api)
+            response_json = response.json()
+            for i in range(len(response_json['result']['grupy']) - 1):
+                for param in params:
+                    print(response_json['result']['grupy'][i][param])
+
+        return
+
+
+    def update_database(self, request):
+
+
+
+
+
 
 
 class VueView(TemplateView):
