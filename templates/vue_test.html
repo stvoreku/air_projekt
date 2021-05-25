@@ -19,8 +19,14 @@
   </div>
 
   <div v-if="location">
-    Your location [[location]] data is [[ location.coords.latitude ]], [[ location.coords.longitude]]
+    Your location data is [[ location.coords.latitude ]], [[ location.coords.longitude]]
   </div>
+
+    <div v-if="place">
+        Closest place is  [[place]]
+
+
+    </div>
 
 </div>
 
@@ -30,7 +36,9 @@
   data:{
     location:null,
     gettingLocation: false,
-    errorStr:null
+    errorStr:null,
+    place:null,
+    distance:null,
   },
   created() {
     //do we support geolocation
@@ -49,6 +57,19 @@
       this.gettingLocation = false;
       this.errorStr = err.message;
     })
+    // Make axios CALL
+      const req = JSON.stringify({x:0, y:0})
+
+
+      axios
+        .post('https://kolejki.herokuapp.com/', req)
+        .then(response => {
+            console.log(response)
+            this.place = response.data
+        })
+
+
+
   }
 })
     </script>
