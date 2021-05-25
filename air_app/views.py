@@ -22,7 +22,7 @@ class HomeView(TemplateView):
 
         places = Place.objects.all()
         closest_place_distance = inf
-        closest_place = None
+        closest_place = ""
 
         for place in places:
             current_place_distance = self.calculate_distance(x, y, place.x, place.y, place.name)[0]
