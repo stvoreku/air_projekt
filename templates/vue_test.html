@@ -7,6 +7,8 @@
 <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 <!DOCTYPE html>
+
+
 <html lang="en">
     <title>Testing Vue</title>
   <body>
@@ -34,17 +36,7 @@
     </div>
     <div class="widget">
         Czy to ptak? Czy to samolot? Nie, tu będzie wykresik
-    <script>
-import { Line } from 'vue-chartjs'
 
-export default {
-  extends: Line,
-  props: ['chartdata', 'options'],
-  mounted () {
-    this.renderChart(this.chartdata, this.options)
-  }
-}
-</script>
 
     </div>
 
@@ -97,5 +89,6 @@ export default {
   }
 })
     </script>
+
   </body>
 </html>
