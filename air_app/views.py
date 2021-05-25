@@ -30,7 +30,7 @@ class HomeView(TemplateView):
                 closest_place_distance = current_place_distance
                 closest_place = self.calculate_distance(x, y, place.x, place.y, place.name)[1]
 
-        json_response['place_name'] = closest_place.name
+        json_response['place_name'] = closest_place
         json_response['distance'] = closest_place_distance
 
 
