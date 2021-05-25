@@ -20,6 +20,9 @@ class HomeView(TemplateView):
 
         #json_response = {'result': json_request['x'] + json_request['y']}
         #To też było tylko "testowe"^^^^^^^^
+
+        json_response = {}
+
         places = Place.objects.all()
         closest_place_distance = inf
         closest_place = ""
