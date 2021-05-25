@@ -65,13 +65,17 @@ class HomeView(TemplateView):
         return distance, office_name
 
 
-    def get_api(self):
+    def get_api(self, api):
         places = Place.objects.all()
 
         apis = []
+        queues = []
 
-        for place in places:
-            apis.append(place.api)
+        if api == "all":  # return information about all places
+            for place in places:
+                apis.append(place.api)
+        else:  # return information only about selected
+            apis.append(api)
 
         params = ['nazwaGrupy', 'czasObslugi', 'liczbaKlwKolejce', 'aktualnyNumer']
 
@@ -82,21 +86,17 @@ class HomeView(TemplateView):
         date = response_json['result']['date']
         time = response_json['result']['time']
 
-        # for url in urls:
-        #    response = requests.get(url)
-        #    response_json = response.json()
-        #    for param in params:
-        #        for i in range(len(response_json['result']['grupy'])):
-        #            print(response_json['result']['grupy'][i][param])
-
         for api in apis:
             response = requests.get(api)
             response_json = response.json()
             for i in range(len(response_json['result']['grupy']) - 1):
+                tmp_queue = []
                 for param in params:
-                    print(response_json['result']['grupy'][i][param])
+                    queue = response_json['result']['grupy'][i][param]
+                    tmp_queue.append(queue)
+                queues.append(tmp_queue)
 
-        return
+        return queues
 
 
     # def update_database(self, request):
