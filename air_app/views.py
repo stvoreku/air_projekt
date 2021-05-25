@@ -99,7 +99,7 @@ class HomeView(TemplateView):
         return
 
 
-    def update_database(self, request):
+    # def update_database(self, request):
 
 
 
