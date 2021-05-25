@@ -25,10 +25,10 @@ class HomeView(TemplateView):
         closest_place = None
 
         for place in places:
-            current_place_distance = self.calculate_distance(x, y, place.x, place.y, place)[0]
+            current_place_distance = self.calculate_distance(x, y, place.x, place.y, place.name)[0]
             if current_place_distance < closest_place_distance:
                 closest_place_distance = current_place_distance
-                closest_place = self.calculate_distance(x, y, place.x, place.y, place)[1]
+                closest_place = self.calculate_distance(x, y, place.x, place.y, place.name)[1]
 
         json_response['place_name'] = closest_place.name
         json_response['distance'] = closest_place_distance
@@ -41,7 +41,7 @@ class HomeView(TemplateView):
 
         return JsonResponse(json_response, status=200)
 
-    def calculate_distance(self, x_user, y_user, x_office, y_office, office):
+    def calculate_distance(self, x_user, y_user, x_office, y_office, office_name):
         # approximate radius of earth in km
         r = 6373.0
 
@@ -59,7 +59,7 @@ class HomeView(TemplateView):
 
         distance = r * c
 
-        return distance, office
+        return distance, office_name
 
 
 class VueView(TemplateView):
