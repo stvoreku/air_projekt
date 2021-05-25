@@ -73,12 +73,8 @@ export default {
       this.gettingLocation = false;
       this.location = pos;
       console.log(pos)
-    }, err => {
-      this.gettingLocation = false;
-      this.errorStr = err.message;
-    })
-    // Make axios CALL
-      const req = JSON.stringify({x:0, y:0})
+
+     const req = JSON.stringify({x:pos.coords.latitude, y:pos.coords.longitude})
 
 
       axios
@@ -87,6 +83,13 @@ export default {
             console.log(response)
             this.place = response.data.place_name
             this.distance = response.data.distance
+
+    }, err => {
+      this.gettingLocation = false;
+      this.errorStr = err.message;
+    })
+    // Make axios CALL
+
         })
 
 
