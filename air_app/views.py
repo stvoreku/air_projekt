@@ -10,30 +10,34 @@ class HomeView(TemplateView):
     template_name = 'home.html'
 
     def post(self, request, *args, **kwargs):
+
+        # json request
         json_request = json.loads(request.body)
-        # WSTAWIAM JAKO PRZYKLAD OBLICZEN - zwrotka sumy X+Y
+
+        # user location
+        x = json_request['x']
+        y = json_request['y']
+
         json_response = {'result': json_request['x'] + json_request['y']}
 
-        '''
         places = Place.objects.all()
         closest_place_distance = inf
         closest_place = None
 
         for place in places:
-            current_place_distance = self.calculate_distance(0, 0, 0, 0, place)[0]  # TODO wrzucic odpowiednie parametry
+            current_place_distance = self.calculate_distance(x, y, place.x, place.y, place)[0]
             if current_place_distance < closest_place_distance:
                 closest_place_distance = current_place_distance
-                closest_place = self.calculate_distance(0, 0, 0, 0, place)[1]
+                closest_place = self.calculate_distance(x, y, place.x, place.y, place)[1]
 
         json_response['place_name'] = closest_place.name
         json_response['distance'] = closest_place_distance
-        '''
 
 
         # JAKO DALSZY PRZYKŁAD - wyciągam pierwszy obiekt Place, dodaje jego nazwe do response
-        place = Place.objects.all()[0]
-        json_response['place_name'] = place.name
-        json_response['distance'] = place.x + place.y  # ogarnac jak sie oblicza odleglosc z wspolrzednych
+        # place = Place.objects.all()[0]
+        # json_response['place_name'] = place.name
+        # json_response['distance'] = place.x + place.y  # ogarnac jak sie oblicza odleglosc z wspolrzednych
 
         return JsonResponse(json_response, status=200)
 
@@ -41,6 +45,7 @@ class HomeView(TemplateView):
         # approximate radius of earth in km
         r = 6373.0
 
+        # latitude = x, longitude = y
         lat1 = radians(x_user)
         lon1 = radians(y_user)
         lat2 = radians(x_office)
