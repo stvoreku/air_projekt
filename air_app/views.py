@@ -20,3 +20,4 @@ class HomeView(TemplateView):
 class VueView(TemplateView):
     template_name = 'vue_test.html'
 # Create your views here.
+
