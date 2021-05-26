@@ -1,0 +1,49 @@
+/* CSS HEX
+$maximum-yellow-red: #FFBA49FF;
+$light-sea-green: #20a39eff;
+$tart-orange: #ef5b5bff;
+$dark-purple: #23001eff;
+$silver-metallic: #a4a9adff;
+ */
+
+body {
+    background-color: #23001eff;
+
+}
+#app {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    background-size: cover;
+    padding: 4rem 2rem;
+    color: #a4a9adff;
+    text-align: center;
+  /* Grid styles */
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.element {
+  /* This will result on four columns, each one of 1fr */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  /* This will result on two rows, each one of 300px */
+    grid-template-rows: 300px 300px;
+    grid-row-gap: 50px;
+}
+
+.widget {
+    border: 2px solid #20a39eff;
+    border-radius: 5px;
+    padding: 4rem 2rem;
+
+}
