@@ -64,13 +64,40 @@ class HomeView(TemplateView):
 
         return distance, office_name
 
+
+    def update_database(self, request, queues):
+
+        for queue in queues:
+            queue = Queue(
+                place=queues[0],
+                date=queues[1],
+                time=queues[2],
+                name=queues[3],
+                service_time=queues[4],
+                queue_lenght=queues[5],
+                current_queue_number=queues[6]
+            )
+            queue.save()
+
+
+class VueView(TemplateView):
+    template_name = 'vue_full.html'
+# Create your views here.
+
+class QueueView(View):
+    def get(self, request, *args, **kwargs):
+        place = Place.objects.get(pk=int(self.kwargs['pk']))
+        out_queues = self.get_api(place)
+        return JsonResponse(out_queues, status=200)
+
+
     def get_api(self, place):
 
         apis = []
         queues = []
 
         if place == "all":  # return information about all places
-            places = Place.objects.all()
+            places = Place.objects.all() #Wont happen
         else:  # return information only about selected
             places = place
 
@@ -93,22 +120,3 @@ class HomeView(TemplateView):
                 queues.append(tmp_queue)
 
         return queues
-
-    def update_database(self, request, queues):
-
-        for queue in queues:
-            queue = Queue(
-                place=queues[0],
-                date=queues[1],
-                time=queues[2],
-                name=queues[3],
-                service_time=queues[4],
-                queue_lenght=queues[5],
-                current_queue_number=queues[6]
-            )
-            queue.save()
-
-
-class VueView(TemplateView):
-    template_name = 'vue_full.html'
-# Create your views here.
