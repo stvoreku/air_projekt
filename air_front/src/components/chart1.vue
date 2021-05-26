@@ -5,7 +5,9 @@ export default {
   extends: Line,
   mounted() {
     this.renderChart(
+
       {
+
         labels: [
           "10:15",
           "10:30",
@@ -33,12 +35,15 @@ export default {
         ]
       },
       {
+
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: 2,
         title: {
           display: true,
           text: "Liczba oczekujących"
         }
+
+
       }
     );
   }
