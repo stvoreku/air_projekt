@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="JA PIERDOLE"/>
+    <HelloWorld msg="SYSTEM KOLEJKOWY"/>
+
+    <chart1/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import chart1 from "./components/chart1.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    chart1
   }
 }
 </script>
