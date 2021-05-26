@@ -13,7 +13,7 @@ class Place(models.Model):
 
 class Queue(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    date = models.IntegerField()
+    num_of_week = models.IntegerField()
     time = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
     service_time = models.IntegerField()

@@ -213,7 +213,7 @@ class MockView(View):
         for queue in queues:
             queue = Queue(
                 place=queues[0],
-                date=queues[1],
+                num_of_week=queues[1],
                 time=queues[2],
                 name=queues[3],
                 service_time=queues[4],
