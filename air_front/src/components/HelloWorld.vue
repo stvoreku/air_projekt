@@ -67,6 +67,22 @@ export default {
 
 
 
+  },
+  methods: {
+    getCurrentStatus: function () {
+      axios
+      .get("https://api.um.warszawa.pl/api/action/wsstore_get/?id=bc83ab5a-0ccc-4e4a-b58d-b821e16df176")
+          .then(response => {
+            console.log(response)
+            this.place = response.data.place_name
+            this.distance = response.data.distance
+
+    }, err => {
+      this.gettingLocation = false;
+      this.errorStr = err.message;
+    })
+      console.log('aaa')
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 <script>
 import { Line } from "vue-chartjs";
 
+
 export default {
   extends: Line,
   mounted() {
@@ -30,7 +31,8 @@ export default {
             data: [4, 5, 6, 5, 8, 6, 4],
             backgroundColor: "transparent",
             borderColor: "rgba(113, 16, 128, 0.50)",
-            pointBackgroundColor: "rgba(121, 21, 18, 1)"
+            pointBackgroundColor: "rgba(121, 21, 18, 1)",
+
           }
         ]
       },
@@ -40,9 +42,29 @@ export default {
         maintainAspectRatio: 2,
         title: {
           display: true,
-          text: "Liczba oczekujących"
+          text: "Liczba oczekujących",
+          fontSize: 50
+        },
+        labels:{
+          fontSize: 50
+        },
+        scales:{
+          xAxes:{
+            ticks: {
+                        barThickness: 18,
+                        beginAtZero: true,
+                        fontSize: 50,
+                        fontColor: '#9E9E9E',
+                    },
+          },
+          yAxes:{
+            ticks: {
+                        beginAtZero: true,
+                        fontSize: 50,
+                        fontColor: '#9E9E9E',
+                    },
+          }
         }
-
 
       }
     );

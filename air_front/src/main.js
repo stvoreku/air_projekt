@@ -5,5 +5,8 @@ import './assets/base.css';
 Vue.config.productionTip = false
 
 new Vue({
+  data: {'PlaceID':0, 'QueueID': 0},
   render: h => h(App),
 }).$mount('#app')
+
+console.log(Vue)
