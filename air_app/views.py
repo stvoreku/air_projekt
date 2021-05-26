@@ -99,7 +99,7 @@ class QueueView(View):
         if place == "all":  # return information about all places
             places = Place.objects.all() #Wont happen
         else:  # return information only about selected
-            places = place
+            places = [place]
 
         params = ['nazwaGrupy', 'czasObslugi', 'liczbaKlwKolejce', 'aktualnyNumer']
 
