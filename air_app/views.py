@@ -104,7 +104,7 @@ class QueueView(View):
         params = ['nazwaGrupy', 'czasObslugi', 'liczbaKlwKolejce', 'aktualnyNumer']
 
         # everywhere the same date and time for queue
-        response = requests.get(apis[0])
+        response = requests.get(place.api)
         response_json = response.json()
         date = response_json['result']['date']
         time = response_json['result']['time']
