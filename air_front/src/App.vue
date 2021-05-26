@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <HelloWorld msg="SYSTEM KOLEJKOWY"/>
+    <div class="widget">
 
-    <chart1/>
+          <chart1/>
+
+    </div>
+
   </div>
 </template>
 
