@@ -88,7 +88,7 @@ class QueueView(View):
     def get(self, request, *args, **kwargs):
         place = Place.objects.get(pk=int(self.kwargs['pk']))
         out_queues = self.get_api(place)
-        return JsonResponse(out_queues, status=200)
+        return JsonResponse({'queues': out_queues}, status=200)
 
 
     def get_api(self, place):
