@@ -7,7 +7,7 @@ import json, requests
 
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'vue_test.html'
 
     def post(self, request, *args, **kwargs):
 
