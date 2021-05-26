@@ -13,9 +13,9 @@ class Place(models.Model):
 
 class Queue(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.IntegerField()
+    time = models.CharField(max_length=10)
     name = models.CharField(max_length=200)
-    service_time = models.IntegerField()  # TODO consider TimeFiled?
+    service_time = models.IntegerField()
     queue_length = models.IntegerField()
     current_queue_number = models.CharField(max_length=10)

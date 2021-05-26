@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, View
 from django.http import HttpResponse, JsonResponse
 from .models import Place, Queue
 from math import sin, cos, sqrt, atan2, radians, inf
-import json, requests
+import json, requests, numpy
 
 
 class HomeView(TemplateView):
@@ -120,3 +120,108 @@ class QueueView(View):
                 queues.append(tmp_queue)
 
         return queues
+
+
+class MockView(View):
+
+    def get(self, request, *args, **kwargs):
+        self.update_mock_database(self.get_api())
+        return JsonResponse({'queues': "dsadsad"}, status=200)
+
+    def mock_queue(self):
+
+        probe = []
+
+        y = 0
+
+        for i in range(0, 33):
+            if i in range(0, 4):  # 8
+                x = numpy.random.randint(0, 5)
+                probe.append(x)
+            elif i in range(5, 9):  # 9
+                y = probe[3]
+                probe.append(y + numpy.random.randint(1, 3))
+            elif i in range(9, 13):  # 10
+                y = probe[7]
+                probe.append(y - numpy.random.randint(0, 3))
+            elif i in range(13, 17):  # 11
+                y = probe[11]
+                probe.append(y - numpy.random.randint(1, 3))
+            elif i in range(17, 21):  # 12
+                y = probe[15]
+                probe.append(y + numpy.random.randint(1, 4))
+            elif i in range(21, 23):  # 13
+                y = probe[19]
+                probe.append(y + numpy.random.randint(3, 6))
+            elif i in range(23, 25):  # 13:30
+                y = probe[21]
+                probe.append(y - numpy.random.randint(1, 2))
+            elif i in range(25, 29):  # 14
+                y = probe[23]
+                probe.append(y - numpy.random.randint(1, 6))
+            elif i in range(29, 31):  # 15
+                y = probe[27]
+                probe.append(y + numpy.random.randint(2, 4))
+            elif i in range(31, 33):  # 15:30
+                y = probe[29]
+                probe.append(y - numpy.random.randint(1, 4))
+
+            if probe[i - 1] < 0:  # check if queue < 0
+                probe[i - 1] = 0
+
+        return probe
+
+    def get_api(self):
+
+        places = Place.objects.all()
+        params = ['nazwaGrupy', 'czasObslugi', 'aktualnyNumer']
+        queues = []
+        j = 0
+
+        times = ["8:00", "8:15", "8:30", "8:45",
+                 "9:00", "9:15", "9:30", "9:45",
+                 "10:00", "10:15", "10:30", "10:45",
+                 "11:00", "11:15", "11:30", "11:45",
+                 "12:00", "12:15", "12:30", "12:45",
+                 "13:00", "13:15", "13:30", "13:45",
+                 "14:00", "14:15", "14:30", "14:45",
+                 "15:00", "15:15", "15:30", "15:45"]
+
+        mock_queues = []
+
+        for x in range(0, 100):
+            mock_queue = self.mock_queue()
+            mock_queues.append(mock_queue)
+
+
+        for time in times:
+            for place in places:
+                response = requests.get(place.api)
+                response_json = response.json()
+                for i in range(len(response_json['result']['grupy']) - 1):
+                    tmp_queue = [place, 4, time]  # 4 for thursday
+                    for param in params:
+                        x = response_json['result']['grupy'][i][param]
+                        tmp_queue.append(x)
+                    tmp_queue.append(mock_queues[i][j])
+                    queues.append(tmp_queue)
+            j += 1
+
+        return queues
+
+    def update_mock_database(self, queues):
+        for queue in queues:
+            queue = Queue(
+                place=queues[0],
+                date=queues[1],
+                time=queues[2],
+                name=queues[3],
+                service_time=queues[4],
+                queue_lenght=queues[6],
+                current_queue_number=queues[5]
+            )
+            queue.save()
+
+
+
+
