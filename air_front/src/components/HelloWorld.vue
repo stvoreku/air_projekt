@@ -50,7 +50,7 @@ export default {
       queues_name:null,
     object: {
               name: 'Object Name',
-              queue_len: 32
+              queue_len: null
             }}
   },
           components: {
