@@ -96,6 +96,7 @@ export default {
           .then(response => {
             console.log(response)
             var tmp_res = response.data.queues
+            console.log(tmp_res)
             this.queues_name = []
             tmp_res.forEach(function (value){
               this.queues_name.push(value[3])
