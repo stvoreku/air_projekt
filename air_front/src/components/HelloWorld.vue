@@ -92,7 +92,7 @@ export default {
           },
     getCurrentStatus: function () {
       axios
-      .get("https://api.um.warszawa.pl/api/action/wsstore_get/?id=bc83ab5a-0ccc-4e4a-b58d-b821e16df176")
+      .get('https://kolejki.herokuapp.com/1')
           .then(response => {
             console.log(response)
             this.queues_name = response.data
