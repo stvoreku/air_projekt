@@ -174,7 +174,7 @@ class MockView(View):
 
     def get_api(self, placeid):
 
-        places = Place.objects.get(id=placeid)
+        places = [Place.objects.get(id=placeid)]
         params = ['nazwaGrupy', 'czasObslugi', 'aktualnyNumer']
         queues = []
         j = 0
