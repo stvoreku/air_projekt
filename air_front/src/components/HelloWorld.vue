@@ -14,6 +14,12 @@
 
     </div>
 
+        <div class="widget" v-if="queues_name">
+        {{queues_name}}
+
+
+    </div>
+
   </div>
 
     </template>
@@ -31,7 +37,8 @@ export default {
     gettingLocation: false,
     errorStr:null,
     place:null,
-    distance:null,}
+    distance:null,
+      queues_name:[],}
   },
     created() {
     //do we support geolocation
