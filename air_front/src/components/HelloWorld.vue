@@ -7,6 +7,11 @@
     occurred: {{errorStr}}
   </div>
 
+    <div class="widget" v-if="place">
+Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmniej uczęszczanych godzinach. Aby rozpocząć,
+      wybierz urząd lub zezwól aplikacji na dostęp do lokalizacji, aby znalazła najbliższy z dostępnych.
+
+    </div>
 
     <div class="widget" v-if="place">
         Najbliższa placówka to {{place}}, znajduje się w odległości {{distance}}
