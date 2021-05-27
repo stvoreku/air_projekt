@@ -214,16 +214,16 @@ class MockView(View):
 
     def update_mock_database(self, queues, placeid):
         for queue in queues:
-            queue = Queue(
+            new_que = Queue(
                 place=Place.objects.get(id=placeid),
-                num_of_week=queues[1],
-                time=queues[2],
-                name=queues[3],
-                service_time=queues[4],
-                queue_length=queues[6],
+                num_of_week=queue[1],
+                time=queue[2],
+                name=queue[3],
+                service_time=queue[4],
+                queue_length=queue[6],
                 current_queue_number = 0 #queues[5]
             )
-            queue.save()
+            new_que.save()
 
 
 
