@@ -25,7 +25,7 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
     </div>
 
     <div class="widget">
-      Aktualna liczba osób w kolejce: {{object.queue_len}}
+      Aktualna liczba osób w kolejce: {{object.queue_len}}. Aktualny numerek kolejki: {{object.curr_num}}
     </div>
 
   </div>
@@ -50,7 +50,8 @@ export default {
       queues_name:null,
     object: {
               name: 'Object Name',
-              queue_len: null
+              queue_len: null,
+              curr_num: null
             }}
   },
           components: {
@@ -111,7 +112,7 @@ export default {
             //this.queues_name = []
             var tmp_list = []
             tmp_res.forEach(function (value){
-              tmp_list.push({'name': value[2], 'queue_len': value[4]})
+              tmp_list.push({'name': value[2], 'queue_len': value[4], 'curr_num': value[5]})
             })
             this.queues_name = tmp_list
     }, err => {
