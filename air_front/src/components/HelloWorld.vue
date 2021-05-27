@@ -14,11 +14,7 @@
 
     </div>
 
-        <div class="widget" v-if="queues_name">
-        {{queues_name}}
-        </div>
-
-    <div>
+    <div class="widget" v-if="queues_name">
       <dropdown :options="queues_name" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
 
     </div>
