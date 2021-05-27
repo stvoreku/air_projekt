@@ -101,7 +101,7 @@ export default {
             //this.queues_name = []
             var tmp_list = []
             tmp_res.forEach(function (value){
-              tmp_list.push(value[3])
+              tmp_list.push({'name': value[2]})
             })
             this.queues_name = tmp_list
     }, err => {
