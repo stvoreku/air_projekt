@@ -127,6 +127,7 @@ class MockView(View):
     def get(self, request, *args, **kwargs):
         place = pk=int(self.kwargs['pk'])
         queues=self.get_api(placeid=place)
+        self.update_mock_database(queues)
         return JsonResponse({'queues': str(queues)}, status=200)
 
     def mock_queue(self):
@@ -219,7 +220,7 @@ class MockView(View):
                 name=queues[3],
                 service_time=queues[4],
                 queue_lenght=queues[6],
-                current_queue_number=queues[5]
+                current_queue_number= 0 #queues[5]
             )
             queue.save()
 
