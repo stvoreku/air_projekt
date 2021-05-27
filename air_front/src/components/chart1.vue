@@ -21,14 +21,14 @@ export default {
         datasets: [
           {
             label: "Typowa tego dnia",
-            data: this.$parent.plotY,
+            data: [0,1,2,4,3,2],
             backgroundColor: "transparent",
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
            {
             label: "Dzisiejsza",
-            data: this.$parent.plotX,
+            data: [1,1,2,3,3,1],
             backgroundColor: "transparent",
             borderColor: "rgba(113, 16, 128, 0.50)",
             pointBackgroundColor: "rgba(121, 21, 18, 1)",
