@@ -38,7 +38,7 @@ export default {
     errorStr:null,
     place:null,
     distance:null,
-      queues_name:[],}
+      queues_name:null,}
   },
     created() {
     //do we support geolocation
@@ -63,7 +63,7 @@ export default {
             console.log(response)
             this.place = response.data.place_name
             this.distance = response.data.distance
-          this.getCurrentStatus()
+          this.queues_name = this.getCurrentStatus()
 
     }, err => {
       this.gettingLocation = false;
