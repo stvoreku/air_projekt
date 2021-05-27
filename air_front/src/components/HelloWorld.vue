@@ -19,7 +19,7 @@
 
     </div>
 
-    <div class="widget" v-if="queues_name">
+    <div class="widget">
       Aktualna liczba osób w kolejce: {{object.queue_len}}
     </div>
 
