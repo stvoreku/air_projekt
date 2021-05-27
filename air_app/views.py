@@ -89,7 +89,7 @@ class QueueView(View):
     def get(self, request, *args, **kwargs):
         place = Place.objects.get(pk=int(self.kwargs['pk']))
         out_queues = self.get_api(place)
-        return JsonResponse({'queues': str(out_queues)}, status=200)
+        return JsonResponse({'queues': out_queues}, status=200)
 
 
     def get_api(self, place):
@@ -114,7 +114,7 @@ class QueueView(View):
             response = requests.get(place.api)
             response_json = response.json()
             for i in range(len(response_json['result']['grupy']) - 1):
-                tmp_queue = [place, date, time]
+                tmp_queue = [date, time]
                 for param in params:
                     queue = response_json['result']['grupy'][i][param]
                     tmp_queue.append(queue)

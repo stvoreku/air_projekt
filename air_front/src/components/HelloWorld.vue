@@ -95,7 +95,7 @@ export default {
       .get('https://kolejki.herokuapp.com/1')
           .then(response => {
             console.log(response)
-            var tmp_res = response.data
+            var tmp_res = response.data.queues
             this.queues_name = []
             tmp_res.forEach(function (value){
               this.queues_name.push(value[3])
