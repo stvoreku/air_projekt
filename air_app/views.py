@@ -128,7 +128,7 @@ class MockView(View):
     def get(self, request, *args, **kwargs):
         place = int(self.kwargs['pk'])
         queues = self.get_api(placeid=place)
-        self.update_mock_database(queues)
+        self.update_mock_database(queues,place)
         return JsonResponse({'queues': str(queues)}, status=200)
 
     def mock_queue(self):
@@ -212,10 +212,10 @@ class MockView(View):
 
         return queues
 
-    def update_mock_database(self, queues):
+    def update_mock_database(self, queues, placeid):
         for queue in queues:
             queue = Queue(
-                place=queues[0],
+                place=Place.objects.get(id=placeid),
                 num_of_week=queues[1],
                 time=queues[2],
                 name=queues[3],
