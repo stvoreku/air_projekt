@@ -220,7 +220,7 @@ class MockView(View):
                 time=queues[2],
                 name=queues[3],
                 service_time=queues[4],
-                queue_lenght=queues[6],
+                queue_length=queues[6],
                 current_queue_number = 0 #queues[5]
             )
             queue.save()
