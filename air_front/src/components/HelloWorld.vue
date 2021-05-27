@@ -41,6 +41,7 @@ export default {
       queues_name:null,
     object: {
               name: 'Object Name',
+              queue_len: 32
             }}
   },
           components: {
@@ -88,6 +89,7 @@ export default {
             this.$parent.plotX = [1,2,3,4,5]
             this.$parent.plotY = [1,3,4,5,6]
             console.log(this.$parent.plotY)
+            console.log(this.object)
           },
     getCurrentStatus: function () {
       axios
@@ -100,7 +102,7 @@ export default {
             //this.queues_name = []
             var tmp_list = []
             tmp_res.forEach(function (value){
-              tmp_list.push({'name': value[2]})
+              tmp_list.push({'name': value[2], 'queue_len': value[4]})
             })
             this.queues_name = tmp_list
     }, err => {
