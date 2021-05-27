@@ -14,7 +14,7 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
     </div>
 
     <div class="widget" v-if="place">
-        Najbliższa placówka to {{place}}, znajduje się w odległości {{distance}}
+        Najbliższa placówka to {{place}}, znajduje się w odległości {{distance}}km
 
 
     </div>
