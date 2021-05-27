@@ -95,7 +95,11 @@ export default {
       .get('https://kolejki.herokuapp.com/1')
           .then(response => {
             console.log(response)
-            this.queues_name = response.data
+            var tmp_res = response.data
+            this.queues_name = []
+            tmp_res.forEach(function (value){
+              this.queues_name.push(value[3])
+            })
     }, err => {
       this.gettingLocation = false;
       this.errorStr = err.message;
