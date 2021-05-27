@@ -16,7 +16,10 @@
 
         <div class="widget" v-if="queues_name">
         {{queues_name}}
+        </div>
 
+    <div>
+      <dropdown :options="queues_name" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
 
     </div>
 
@@ -26,6 +29,7 @@
 
 <script>
 import axios from 'axios';
+import dropdown from 'vue-dropdowns';
 
 export default {
   name: 'HelloWorld',
@@ -38,8 +42,14 @@ export default {
     errorStr:null,
     place:null,
     distance:null,
-      queues_name:null,}
+      queues_name:null,
+    object: {
+              name: 'Object Name',
+            }}
   },
+          components: {
+            'dropdown': dropdown,
+        },
     created() {
     //do we support geolocation
     if(!("geolocation" in navigator)) {
@@ -63,7 +73,7 @@ export default {
             console.log(response)
             this.place = response.data.place_name
             this.distance = response.data.distance
-          this.queues_name = this.getCurrentStatus()
+            this.getCurrentStatus()
 
     }, err => {
       this.gettingLocation = false;
@@ -77,11 +87,15 @@ export default {
 
   },
   methods: {
+    methodToRunOnSelect(payload) {
+            this.object = payload;
+          },
     getCurrentStatus: function () {
       axios
       .get("https://api.um.warszawa.pl/api/action/wsstore_get/?id=bc83ab5a-0ccc-4e4a-b58d-b821e16df176")
           .then(response => {
             console.log(response)
+            this.queues_name = response.data
     }, err => {
       this.gettingLocation = false;
       this.errorStr = err.message;
