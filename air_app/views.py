@@ -225,6 +225,13 @@ class MockView(View):
             )
             new_que.save()
 
+class AllQueueView(View):
+    def get(self, request, *args, **kwargs):
+        queues = Queue.objects.all()
+        response = {}
+        for q in queues:
+            response[q.id] = q.name
+        return JsonResponse(response)
 
 
 

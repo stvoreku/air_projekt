@@ -53,7 +53,7 @@ export default {
     place:null,
     distance:null,
       queues_name:null,
-      places_name: ['a','b'],
+      places_name: null,
     object: {
               name: 'Object Name',
               queue_len: null,
