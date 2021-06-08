@@ -80,7 +80,7 @@ export default {
             tmp_res.forEach(function (value){
               tmp_list.push({'name': value[1], 'num': value[0]})
             })
-            this.queues_name = tmp_list
+            this.places_name = tmp_list
 
     }, err => {
       this.gettingLocation = false;
