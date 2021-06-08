@@ -6,6 +6,6 @@ urlpatterns = [
     path('vue_test/', csrf_exempt(views.VueView.as_view()), name='vue_test'),
     path('<int:pk>/', views.QueueView.as_view(), name='queue'),
     path('mock/<int:pk>/', views.MockView.as_view(), name='mock'),
-    path('queues/', views.AllQueueView.as_view(), name='queues'),
+    path('places/', views.AllPlacesView.as_view(), name='queues'),
 
 ]
