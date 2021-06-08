@@ -64,6 +64,20 @@ export default {
             'dropdown': dropdown,
         },
     created() {
+    //fetch all places
+      axios
+      .get('https://kolejki.herokuapp.com/places/')
+          .then(response => {
+            console.log(response)
+            var tmp_res = response.data
+            console.log(tmp_res)
+            //this.queues_name = []
+
+            this.queues_name = tmp_res
+    }, err => {
+      this.gettingLocation = false;
+      this.errorStr = err.message;
+    })
     //do we support geolocation
     if(!("geolocation" in navigator)) {
       this.errorStr = 'Geolocation is not available.';
