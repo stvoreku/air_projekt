@@ -230,7 +230,7 @@ class AllPlacesView(View):
         places = Place.objects.all()
         response = []
         for q in places:
-            response.append(q.id, q.name)
+            response.append([q.id, q.name])
         return JsonResponse({'places':response})
 
 
