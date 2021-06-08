@@ -24,8 +24,8 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
 
     </div>
 
-        <div class="widget" v-if="queues_name">
-      <dropdown :options="queues_name" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+        <div class="widget" v-if="places_name">
+      <dropdown :options="places_name" :selected="place_obj" v-on:updateOption="places_methodToRunOnSelect"></dropdown>
 
     </div>
 
@@ -53,6 +53,7 @@ export default {
     place:null,
     distance:null,
       queues_name:null,
+      places_name: ['a','b'],
     object: {
               name: 'Object Name',
               queue_len: null,
