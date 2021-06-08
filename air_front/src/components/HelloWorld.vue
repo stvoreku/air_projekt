@@ -54,6 +54,10 @@ export default {
     distance:null,
       queues_name:null,
       places_name: null,
+      place_obj: {
+      name: 'Object Name',
+        num: null
+      },
     object: {
               name: 'Object Name',
               queue_len: null,
@@ -69,11 +73,15 @@ export default {
       .get('https://kolejki.herokuapp.com/places/')
           .then(response => {
             console.log(response)
-            var tmp_res = response.data
+            var tmp_res = response.data.places
             console.log(tmp_res)
             //this.queues_name = []
+           var tmp_list = []
+            tmp_res.forEach(function (value){
+              tmp_list.push({'name': value[1], 'num': value[0]})
+            })
+            this.queues_name = tmp_list
 
-            this.queues_name = tmp_res
     }, err => {
       this.gettingLocation = false;
       this.errorStr = err.message;

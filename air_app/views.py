@@ -228,10 +228,10 @@ class MockView(View):
 class AllPlacesView(View):
     def get(self, request, *args, **kwargs):
         places = Place.objects.all()
-        response = {}
+        response = []
         for q in places:
-            response[q.id] = q.name
-        return JsonResponse(response)
+            response.append(q.id, q.name)
+        return JsonResponse({'places':response})
 
 
 
