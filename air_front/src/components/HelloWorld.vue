@@ -14,8 +14,12 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
     </div>
 
     <div class="widget" v-if="place">
-        Najbliższa placówka to {{place}}, znajduje się w odległości {{distance}}km
+        Wybarna placówka to {{place}}, znajduje się w odległości {{distance}}km
 
+    </div>
+
+     <div class="widget" v-if="places_name">
+      <dropdown :options="places_name" :selected="place_obj" v-on:updateOption="places_methodToRunOnSelect"></dropdown>
 
     </div>
 
@@ -24,10 +28,6 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
 
     </div>
 
-        <div class="widget" v-if="places_name">
-      <dropdown :options="places_name" :selected="place_obj" v-on:updateOption="places_methodToRunOnSelect"></dropdown>
-
-    </div>
 
     <div class="widget">
       Aktualna liczba osób w kolejce: {{object.queue_len}}. Aktualny numerek kolejki: {{object.curr_num}}
@@ -129,6 +129,10 @@ export default {
             console.log(this.$parent.plotY)
             console.log(this.object)
           },
+    places_methodToRunOnSelect(payload) {
+        this.place_obj = payload;
+        this.place = this.place_obj.name
+    },
     getCurrentStatus: function () {
       axios
       .get('https://kolejki.herokuapp.com/1')
