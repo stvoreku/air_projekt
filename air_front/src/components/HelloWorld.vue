@@ -24,6 +24,11 @@ Sprawdź aktualną zajętość kolejki w urzędzie lub zaplanuj wizytę w najmni
 
     </div>
 
+        <div class="widget" v-if="queues_name">
+      <dropdown :options="queues_name" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+
+    </div>
+
     <div class="widget">
       Aktualna liczba osób w kolejce: {{object.queue_len}}. Aktualny numerek kolejki: {{object.curr_num}}
     </div>
