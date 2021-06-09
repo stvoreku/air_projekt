@@ -135,7 +135,7 @@ export default {
     },
     getCurrentStatus: function () {
       axios
-      .get('https://kolejki.herokuapp.com/4')
+      .get('https://kolejki.herokuapp.com/6')
           .then(response => {
             console.log(response)
             var tmp_res = response.data.queues
