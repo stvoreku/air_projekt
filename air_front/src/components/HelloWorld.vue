@@ -55,11 +55,11 @@ export default {
       queues_name:null,
       places_name: null,
       place_obj: {
-      name: 'Object Name',
+      name: 'Wybór placówki',
         num: null
       },
     object: {
-              name: 'Object Name',
+              name: 'Wybór Kolejki',
               queue_len: null,
               curr_num: null
             }}
